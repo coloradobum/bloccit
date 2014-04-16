@@ -7,6 +7,9 @@ gem 'rails', '4.1.0'
 gem 'pg'
 
 gem 'faker'
+gem 'devise'
+gem 'figaro'
+
 group :production do
   gem 'rails_12factor'
 end
