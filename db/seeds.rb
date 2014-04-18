@@ -8,12 +8,33 @@
 
 require 'faker'
 
-24.times do
-  p = Post.create(title: Faker::Lorem.sentence, body: Faker::Lorem.paragraph)
-  3.times do
-    p.comments.create(body: Faker::Lorem.paragraph)
+5.times do
+  password = Faker::Lorem.characters(10)
+  user = User.new(
+    name: Faker::Name.name,
+    email: Faker::Internet.email,
+    password: password,
+    password_confirmation: password)
+  user.skip_confirmation!
+  user.save
+
+  5.times do
+    post = Post.create(
+      user: user,
+      title: Faker::Lorem.sentence,
+      body: Faker::Lorem.paragraph)
+    post.update_attribute(:created_at, Time.now - rand(600..31536000))
+
+    # 3.times do
+    #   p.comments.create(body: Faker::Lorem.paragraph)
+    # end
+
   end
 end
+
+user = User.first
+user.skip_reconfirmation!
+user.update_attributes(email: 'subskriptions@gmail.com', password: '*mbPm4XEvv4gWtF', password_confirmation: '*mbPm4XEvv4gWtF')
 
 puts "Seed finished"
 puts "#{Post.count} posts created"
