@@ -2,14 +2,14 @@ require 'faker'
 
 # Create 15 topics
 topics = []
-15.times do
+35.times do
   topics << Topic.create(
     name: Faker::Lorem.sentence,
     description: Faker::Lorem.paragraph
   )
 end
 
-5.times do
+20.times do
   password = Faker::Lorem.characters(10)
   user = User.new(
     name: Faker::Name.name,
@@ -19,7 +19,7 @@ end
   user.skip_confirmation!
   user.save
 
-  5.times do
+  50.times do
     topic = topics.first
     post = Post.create(
       user: user,
