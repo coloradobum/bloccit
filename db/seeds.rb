@@ -34,6 +34,7 @@ topics = Topic.all
 
   # set the created_at to a time within the past year
   post.update_attribute(:created_at, rand(10.minutes .. 1.year).ago)
+  post.update_rank
 end
 posts = Post.all
 
