@@ -7,6 +7,7 @@
     <h4 class="media-heading">
       <%= link_to (markdown post.title), [post.topic, post] %>
     </h4>
+    <%= render partial: 'votes/voter', locals: { topic: @topic, post: post } %>
     <small>
       <%= image_tag(post.user.avatar.tiny.url) if post.user.avatar? %>
       submitted <%= time_ago_in_words(post.created_at) %> ago by
@@ -14,6 +15,7 @@
       <% if show_topic %>
         to <%= link_to post.topic.name, post.topic %>
       <% end %>
+
       <br/>
       <%= post.comments.count %> Comments
     </small>
