@@ -1,4 +1,5 @@
 class CommentsController < ApplicationController
+  respond_to :html
 
   def create
     @topic = Topic.find(params[:topic_id])
