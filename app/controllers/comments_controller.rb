@@ -22,6 +22,12 @@ class CommentsController < ApplicationController
     end
   end
 
+  def show
+    @topic = Topic.find(params[:id])
+    authorize @topic
+    @posts = @topic.posts.includes(:user).includes(:comments).paginate(page: params[:page], per_page: 10)
+  end
+
   def destroy
     @topic = Topic.find(params[:topic_id])
     @post = @topic.posts.find(params[:post_id])
