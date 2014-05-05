@@ -3,10 +3,10 @@ class CommentsController < ApplicationController
 
   def create
     @topic = Topic.find(params[:topic_id])
-    @post = @topic.posts.find( params[:post_id] )
+    @post = @topic.posts.find(params[:post_id])
     @comments = @post.comments
 
-    @comment = current_user.comments.build(comment_params)
+    @comment = current_user.comments.build( comment_params )
     @comment.post = @post
     @new_comment = Comment.new
 
